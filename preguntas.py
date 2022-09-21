@@ -1,28 +1,27 @@
-"""
-Laboratorio de Programación Básica en Python para Manejo de Datos
------------------------------------------------------------------------------------------
-
-Este archivo contiene las preguntas que se van a realizar en el laboratorio.
-
-No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de python
-básicas.
-
-Utilice el archivo `data.csv` para resolver las preguntas.
 
 
-"""
+with open("data.csv", "r") as file:
+        datos = file.readlines()
+
+datos = [linea.replace("\n", "") for linea in datos]
+datos = [linea.replace("\t", ",") for linea in datos]
+datos = [linea.split(",") for linea in datos]
 
 
 def pregunta_01():
+
     """
     Retorne la suma de la segunda columna.
 
     Rta/
     214
 
-    """
-    return 214
+    segunda_columna = [linea[1] for linea in datos[0:]]
+    segunda_columna = [int(linea) for linea in segunda_columna]
 
+    """
+    lista1 = [int(elemento) for linea in datos for elemento in linea[1]]
+    return sum(lista1)
 
 def pregunta_02():
     """
@@ -39,7 +38,18 @@ def pregunta_02():
     ]
 
     """
-    return
+
+    lista2 = [linea[0] for linea in datos[0:]]
+    lista2 = [
+        
+        ("A",lista2.count("A")),
+        ("B",lista2.count("B")),
+        ("C",lista2.count("C")),
+        ("D",lista2.count("D")),
+        ("E",lista2.count("E")),
+    ]
+    
+    return lista2
 
 
 def pregunta_03():
@@ -57,7 +67,12 @@ def pregunta_03():
     ]
 
     """
-    return
+    lista3 = [linea[0:2] for linea in datos]
+    lista3 = [(linea[0], int(linea[1])) for linea in lista3] 
+    lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
+    lista3.sort(reverse = False)
+
+    return lista3
 
 
 def pregunta_04():
