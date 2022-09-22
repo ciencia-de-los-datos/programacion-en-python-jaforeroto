@@ -67,8 +67,9 @@ def pregunta_03():
     ]
 
     """
+
     lista3 = [linea[0:2] for linea in datos]
-    lista3 = [(linea[0], int(linea[1])) for linea in lista3] 
+    lista3 = [(linea[0], int(linea[1])) for linea in lista3]
     lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
     lista3.sort(reverse = False)
 
@@ -97,7 +98,11 @@ def pregunta_04():
     ]
 
     """
-    return
+    lista4 = [linea[2].split("-")[1] for linea in datos]
+    lista4 = [(k,sum([1 for x in lista4 if x == k])) for k in list(dict.fromkeys(lista4))]
+    lista4.sort(reverse = False)
+
+    return lista4
 
 
 def pregunta_05():
