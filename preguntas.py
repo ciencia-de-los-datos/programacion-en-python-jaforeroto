@@ -1,5 +1,4 @@
 
-
 with open("data.csv", "r") as file:
         datos = file.readlines()
 
@@ -70,11 +69,22 @@ def pregunta_03():
 
     lista3 = [linea[0:2] for linea in datos]
     lista3 = [(linea[0], int(linea[1])) for linea in lista3]
-    lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
+    listaF = []
+    for a in dict(lista3).keys():
+        i = 0
+        for (x,y) in lista3:
+            if x == a:
+                i += y
+        lista3.append((k,i))
+    
     lista3.sort(reverse = False)
 
-    return lista3
 
+
+    # lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
+    # lista3.sort(reverse = False)
+
+    return lista3
 
 def pregunta_04():
     """
