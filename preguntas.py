@@ -69,22 +69,20 @@ def pregunta_03():
 
     lista3 = [linea[0:2] for linea in datos]
     lista3 = [(linea[0], int(linea[1])) for linea in lista3]
-    listaF = []
+    listaB = []
     for a in dict(lista3).keys():
         i = 0
         for (x,y) in lista3:
             if x == a:
                 i += y
-        lista3.append((k,i))
-    
-    lista3.sort(reverse = False)
+        listaB.append((a,i)) 
+    listaB.sort(reverse = False)
 
-
+    return listaB
 
     # lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
     # lista3.sort(reverse = False)
 
-    return lista3
 
 def pregunta_04():
     """
@@ -108,12 +106,23 @@ def pregunta_04():
     ]
 
     """
-    lista4 = [linea[2].split("-")[1] for linea in datos]
-    lista4 = [(k,sum([1 for x in lista4 if x == k])) for k in list(dict.fromkeys(lista4))]
-    lista4.sort(reverse = False)
+    lista4 = [linea[2] for linea in datos]
+    lista4 = [linea.split("-") for linea in lista4]
+    lista4 = [linea[1] for linea in lista4]
+    listaC = []
+    for a in dict(lista4).keys():
+        i = 0
+        for (x,y) in lista4:
+            if x == a:
+                i =+ y
+        listaC.append((a,i))
+    listaC.sort(reverse = False)
 
-    return lista4
+    return listaC
 
+    #lista4 = [linea[2].split("-")[1] for linea in datos]
+    #lista4 = [(k,sum([1 for x in lista4 if x == k])) for k in list(dict.fromkeys(lista4))]
+    #lista4.sort(reverse = False)
 
 def pregunta_05():
     """
