@@ -108,14 +108,14 @@ def pregunta_04():
     """
     lista4 = [linea[2] for linea in datos]
     lista4 = [linea.split("-") for linea in lista4]
-    lista4 = [linea[1] for linea in lista4]
     listaC = []
-    for a in dict(lista4).keys():
+
+    for (x,y) in lista4:
         i = 0
-        for (x,y) in lista4:
-            if x == a:
+        if x == (linea[1] for linea in lista4):
                 i =+ y
-        listaC.append((a,i))
+    listaC.append((x,i))
+
     listaC.sort(reverse = False)
 
     return listaC
