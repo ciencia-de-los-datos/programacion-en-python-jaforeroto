@@ -1,4 +1,8 @@
 
+from pyparsing import line
+from sqlalchemy import false
+
+
 with open("data.csv", "r") as file:
         datos = file.readlines()
 
@@ -74,14 +78,16 @@ def pregunta_03():
         i = 0
         for (x,y) in lista3:
             if x == a:
-                i += y
+                i += y # Es lo mismo que i = i + y
         listaB.append((a,i)) 
     listaB.sort(reverse = False)
 
     return listaB
 
-    # lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
-    # lista3.sort(reverse = False)
+    '''
+    lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
+    lista3.sort(reverse = False)
+    '''
 
 
 def pregunta_04():
@@ -106,23 +112,11 @@ def pregunta_04():
     ]
 
     """
-    lista4 = [linea[2] for linea in datos]
-    lista4 = [linea.split("-") for linea in lista4]
-    listaC = []
+    lista4 = [linea[2].split("-")[1] for linea in datos]
+    lista4 = [(k,sum([1 for x in lista4 if x == k])) for k in list(dict.fromkeys(lista4))]
+    lista4.sort(reverse = False)
 
-    for (x,y) in lista4:
-        i = 0
-        if x == (linea[1] for linea in lista4):
-                i =+ y
-    listaC.append((x,i))
-
-    listaC.sort(reverse = False)
-
-    return listaC
-
-    #lista4 = [linea[2].split("-")[1] for linea in datos]
-    #lista4 = [(k,sum([1 for x in lista4 if x == k])) for k in list(dict.fromkeys(lista4))]
-    #lista4.sort(reverse = False)
+    return lista4
 
 def pregunta_05():
     """
@@ -139,7 +133,24 @@ def pregunta_05():
     ]
 
     """
-    return
+    lista5 = [linea[0:2] for linea in datos]
+    lista5 = [(linea[0], int(linea[1])) for linea in lista5]
+    lista5 = [(k, max(y for (x,y) in lista5 if x == k), min(y for (x,y) in lista5 if x == k)) for k in dict(lista5).keys()]
+    lista5.sort()
+    
+
+    # for a in dict(lista5).keys(): 
+    #     max = 0
+    #     min = 0
+    #     for (x,y) in lista5:
+    #         if a == x:
+    #             # min(lista5[1])
+    #             if y > max:
+    #                 max = y   
+    #     listaC.append((a,max,min))
+
+
+    return lista5
 
 
 def pregunta_06():
