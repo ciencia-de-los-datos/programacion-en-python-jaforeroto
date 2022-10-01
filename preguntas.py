@@ -175,6 +175,8 @@ def pregunta_06():
     ]
 
     """
+
+    # djkndkjfdf
     return
 
 
