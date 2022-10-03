@@ -1,14 +1,16 @@
 
+from numpy import append
 from pyparsing import line
 from sqlalchemy import false
 
 
-with open("data.csv", "r") as file:
-        datos = file.readlines()
-
-datos = [linea.replace("\n", "") for linea in datos]
-datos = [linea.replace("\t", ",") for linea in datos]
-datos = [linea.split(",") for linea in datos]
+datos=[]
+with open('data.csv','r') as file:
+    for line in file:
+        line=line.replace(chr(32),"")
+        line=line.replace("\n","")
+        tupla = tuple(list(line.split("\t")))
+        datos.append(tupla)
 
 
 def pregunta_01():
@@ -154,6 +156,7 @@ def pregunta_05():
 
 
 def pregunta_06():
+
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
@@ -175,9 +178,15 @@ def pregunta_06():
     ]
 
     """
+    lista6 = [linea[4] for linea in datos]
+    lista6 = [linea.split(",") for linea in lista6]
+    lista6 = [item for lista in lista6 for item in lista]
+    lista6 = [linea.split(":") for linea in lista6]
+    lista6 = [(linea[0], int(linea[1])) for linea in lista6]
+    lista6 = [(k, min(y for (x,y) in lista6 if x == k), max(y for (x,y) in lista6 if x == k)) for k in dict(lista6).keys()]
+    lista6.sort()
 
-    # djkndkjfdf
-    return
+    return lista6
 
 
 def pregunta_07():
@@ -247,9 +256,18 @@ def pregunta_09():
         "iii": 18,
         "jjj": 18,
     }
-
+    
     """
-    return
+    lista9 = [linea[4] for linea in datos]
+    lista9 = [linea.split(",") for linea in lista9]
+    lista9 = [item for lista in lista9 for item in lista]
+    lista9 = [linea.split(":") for linea in lista9]
+    lista9 = [linea[0] for linea in lista9]
+    lista9 = [(k,sum([1 for x in lista9 if x == k])) for k in list(dict.fromkeys(lista9))]
+    lista9.sort()
+    lista9 = dict(lista9)
+    
+    return lista9
 
 
 def pregunta_10():
@@ -270,6 +288,9 @@ def pregunta_10():
 
 
     """
+
+    
+
     return
 
 
