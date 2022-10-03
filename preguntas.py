@@ -1,9 +1,4 @@
 
-from numpy import append
-from pyparsing import line
-from sqlalchemy import false
-
-
 datos=[]
 with open('data.csv','r') as file:
     for line in file:
@@ -289,7 +284,7 @@ def pregunta_10():
 
     """
 
-    
+
 
     return
 
