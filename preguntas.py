@@ -205,6 +205,7 @@ def pregunta_07():
     ]
 
     """
+
     return
 
 
@@ -284,9 +285,9 @@ def pregunta_10():
 
     """
 
+    lista10 = [(linea[0], len(linea[3].split(",")), len(linea[4].split(","))) for linea in datos]
 
-
-    return
+    return lista10
 
 
 def pregunta_11():
