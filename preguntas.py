@@ -232,7 +232,7 @@ def pregunta_07():
         rta=(j,letras)        
         lista7.append(rta)  
              
-    return lista7  
+    return lista7
 
 
 
@@ -263,7 +263,7 @@ def pregunta_08():
     indice=[]
     lista8=[]
     
-    for t in range(0,len(tup_lst)):
+    for t in range(0,len(datos)):
         e1=int(datos[t][1])
         e2=datos[t][0]
         indice.append(e1)    
@@ -283,7 +283,7 @@ def pregunta_08():
         rta=(j,letras)        
         lista8.append(rta)  
 
-    return lista8  
+    return lista8
 
 
 def pregunta_09():
@@ -360,8 +360,49 @@ def pregunta_11():
 
 
     """
+    lista_completa=[]
+    letras=[]
+    de=[]
+    lista11=[]
+    diccionario12={}
 
-    return
+    for t in range(0,len(datos)):
+        e=list(str((datos[t][3])).split(','))
+        l=tuple(e)
+        letras.append(l)
+        e.append(datos[t][1])
+
+        def mixs(num):
+            try:
+                ele = int(num)
+                return (0, ele, '')
+            except ValueError:
+                return (1, num, '')
+
+        e.sort(key = mixs)
+        e[0]=int(e[0])
+        e=tuple(e)
+        lista_completa.append(e)
+
+    for p in letras:
+        for r in p: de.append(r)
+
+    letras=0
+    letras=sorted(list(set(de)),reverse=False)
+
+    for k in letras:
+        suma=0
+        for i in lista_completa:
+            for j in i:
+                if k==j:
+                    suma+=i[0]   
+        h=(k,suma)
+        lista11.append(h)
+        
+    for elemento in lista11:
+        diccionario12[elemento[0]]=elemento[1]
+
+    return lista11
 
 
 def pregunta_12():
@@ -379,6 +420,40 @@ def pregunta_12():
     }
 
     """
+    lista_completa=[]
+    letras=[]
+    de=[]
+    lista12=[]
+    diccionario12={}
 
+    for x in range(0,len(datos)):
+        a=str((datos[x][4])).split(',')
+        d=datos[x][0]
+        letras.append(d)
+        suma=0
+        for w in a:
+            #print(w)
+            q=int(w[4:])
+            suma+=q
+        h=(d,suma)
+        lista_completa.append(h)
 
-    return
+    for p in letras:
+        for r in p: de.append(r)
+
+    letras=0
+    letras=sorted(list(set(de)),reverse=False)
+
+    for k in letras:
+        cont=0
+        for i in lista_completa:
+            for j in i:
+                if k==j:
+                    cont+=i[1]   
+        f=(k,cont)
+        lista12.append(f)
+
+    for elemento in lista12:
+        diccionario12[elemento[0]]=elemento[1]
+
+    return diccionario12
