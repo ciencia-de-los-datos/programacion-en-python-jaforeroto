@@ -1,28 +1,30 @@
-"""
-Laboratorio de Programación Básica en Python para Manejo de Datos
------------------------------------------------------------------------------------------
-
-Este archivo contiene las preguntas que se van a realizar en el laboratorio.
-
-No puede utilizar pandas, numpy o scipy. Se debe utilizar solo las funciones de python
-básicas.
-
-Utilice el archivo `data.csv` para resolver las preguntas.
 
 
-"""
+datos=[]
+
+
+with open('data.csv','r') as file:
+    for line in file:
+        line=line.replace(chr(32),"")
+        line=line.replace("\n","")
+        tupla = tuple(list(line.split("\t")))
+        datos.append(tupla)
 
 
 def pregunta_01():
+
     """
     Retorne la suma de la segunda columna.
 
     Rta/
     214
 
-    """
-    return
+    segunda_columna = [linea[1] for linea in datos[0:]]
+    segunda_columna = [int(linea) for linea in segunda_columna]
 
+    """
+    lista1 = [int(elemento) for linea in datos for elemento in linea[1]]
+    return sum(lista1)
 
 def pregunta_02():
     """
@@ -39,7 +41,17 @@ def pregunta_02():
     ]
 
     """
-    return
+    lista2 = [linea[0] for linea in datos[0:]]
+    lista2 = [
+        
+        ("A",lista2.count("A")),
+        ("B",lista2.count("B")),
+        ("C",lista2.count("C")),
+        ("D",lista2.count("D")),
+        ("E",lista2.count("E")),
+    ]
+    
+    return lista2
 
 
 def pregunta_03():
@@ -57,7 +69,24 @@ def pregunta_03():
     ]
 
     """
-    return
+
+    lista3 = [linea[0:2] for linea in datos]
+    lista3 = [(linea[0], int(linea[1])) for linea in lista3]
+    listaB = []
+    for a in dict(lista3).keys():
+        i = 0
+        for (x,y) in lista3:
+            if x == a:
+                i += y # Es lo mismo que i = i + y
+        listaB.append((a,i)) 
+    listaB.sort(reverse = False)
+
+    return listaB
+
+    '''
+    lista3 =[(k, sum([y for (x,y) in lista3 if x == k])) for k in dict(lista3).keys()]
+    lista3.sort(reverse = False)
+    '''
 
 
 def pregunta_04():
@@ -82,8 +111,11 @@ def pregunta_04():
     ]
 
     """
-    return
+    lista4 = [linea[2].split("-")[1] for linea in datos]
+    lista4 = [(k,sum([1 for x in lista4 if x == k])) for k in list(dict.fromkeys(lista4))]
+    lista4.sort(reverse = False)
 
+    return lista4
 
 def pregunta_05():
     """
@@ -100,10 +132,28 @@ def pregunta_05():
     ]
 
     """
-    return
+    lista5 = [linea[0:2] for linea in datos]
+    lista5 = [(linea[0], int(linea[1])) for linea in lista5]
+    lista5 = [(k, max(y for (x,y) in lista5 if x == k), min(y for (x,y) in lista5 if x == k)) for k in dict(lista5).keys()]
+    lista5.sort()
+    
+
+    # for a in dict(lista5).keys(): 
+    #     max = 0
+    #     min = 0
+    #     for (x,y) in lista5:
+    #         if a == x:
+    #             # min(lista5[1])
+    #             if y > max:
+    #                 max = y   
+    #     listaC.append((a,max,min))
+
+
+    return lista5
 
 
 def pregunta_06():
+
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
@@ -125,7 +175,15 @@ def pregunta_06():
     ]
 
     """
-    return
+    lista6 = [linea[4] for linea in datos]
+    lista6 = [linea.split(",") for linea in lista6]
+    lista6 = [item for lista in lista6 for item in lista]
+    lista6 = [linea.split(":") for linea in lista6]
+    lista6 = [(linea[0], int(linea[1])) for linea in lista6]
+    lista6 = [(k, min(y for (x,y) in lista6 if x == k), max(y for (x,y) in lista6 if x == k)) for k in dict(lista6).keys()]
+    lista6.sort()
+
+    return lista6
 
 
 def pregunta_07():
@@ -149,7 +207,33 @@ def pregunta_07():
     ]
 
     """
-    return
+
+    lista=[]
+    indiceice=[]
+    lista7=[]
+    
+    
+    for t in range(0,len(datos)):
+        e1=int(datos[t][1])
+        e2=datos[t][0]
+        indiceice.append(e1)    
+        u=(e1,e2)
+        lista.append(u)
+    
+    indiceice=set(indiceice)
+
+    for j in indiceice:
+        letras = 0
+        letras = []
+        rta = 0 
+        for k in lista:
+            if k[0] == j:
+                letras.append(k[1])
+        rta=(j,letras)        
+        lista7.append(rta)  
+             
+    return lista7
+
 
 
 def pregunta_08():
@@ -174,7 +258,32 @@ def pregunta_08():
     ]
 
     """
-    return
+
+    lista=[]
+    indice=[]
+    lista8=[]
+    
+    for t in range(0,len(datos)):
+        e1=int(datos[t][1])
+        e2=datos[t][0]
+        indice.append(e1)    
+        u=(e1,e2)
+        lista.append(u)
+    
+    indice=set(indice)
+
+    for j in indice:
+        letras=0
+        letras=[]
+        rta=0 
+        for k in lista:
+            if k[0]==j:
+                letras.append(k[1])
+        letras=sorted(list(set(letras)),reverse=False)
+        rta=(j,letras)        
+        lista8.append(rta)  
+
+    return lista8
 
 
 def pregunta_09():
@@ -195,9 +304,18 @@ def pregunta_09():
         "iii": 18,
         "jjj": 18,
     }
-
+    
     """
-    return
+    lista9 = [linea[4] for linea in datos]
+    lista9 = [linea.split(",") for linea in lista9]
+    lista9 = [item for lista in lista9 for item in lista]
+    lista9 = [linea.split(":") for linea in lista9]
+    lista9 = [linea[0] for linea in lista9]
+    lista9 = [(k,sum([1 for x in lista9 if x == k])) for k in list(dict.fromkeys(lista9))]
+    lista9.sort()
+    lista9 = dict(lista9)
+    
+    return lista9
 
 
 def pregunta_10():
@@ -218,7 +336,10 @@ def pregunta_10():
 
 
     """
-    return
+
+    lista10 = [(linea[0], len(linea[3].split(",")), len(linea[4].split(","))) for linea in datos]
+
+    return lista10
 
 
 def pregunta_11():
@@ -239,7 +360,49 @@ def pregunta_11():
 
 
     """
-    return
+    lista_completa=[]
+    letras=[]
+    de=[]
+    lista11=[]
+    diccionario11={}
+
+    for t in range(0,len(datos)):
+        e=list(str((datos[t][3])).split(','))
+        l=tuple(e)
+        letras.append(l)
+        e.append(datos[t][1])
+
+        def mixs(num):
+            try:
+                ele = int(num)
+                return (0, ele, '')
+            except ValueError:
+                return (1, num, '')
+
+        e.sort(key = mixs)
+        e[0]=int(e[0])
+        e=tuple(e)
+        lista_completa.append(e)
+
+    for p in letras:
+        for r in p: de.append(r)
+
+    letras=0
+    letras=sorted(list(set(de)),reverse=False)
+
+    for k in letras:
+        suma=0
+        for i in lista_completa:
+            for j in i:
+                if k==j:
+                    suma+=i[0]   
+        h=(k,suma)
+        lista11.append(h)
+        
+    for elemento in lista11:
+        diccionario11[elemento[0]]=elemento[1]
+
+    return diccionario11
 
 
 def pregunta_12():
@@ -257,4 +420,40 @@ def pregunta_12():
     }
 
     """
-    return
+    lista_completa=[]
+    letras=[]
+    de=[]
+    lista12=[]
+    diccionario12={}
+
+    for x in range(0,len(datos)):
+        a=str((datos[x][4])).split(',')
+        d=datos[x][0]
+        letras.append(d)
+        suma=0
+        for w in a:
+            #print(w)
+            q=int(w[4:])
+            suma+=q
+        h=(d,suma)
+        lista_completa.append(h)
+
+    for p in letras:
+        for r in p: de.append(r)
+
+    letras=0
+    letras=sorted(list(set(de)),reverse=False)
+
+    for k in letras:
+        cont=0
+        for i in lista_completa:
+            for j in i:
+                if k==j:
+                    cont+=i[1]   
+        f=(k,cont)
+        lista12.append(f)
+
+    for elemento in lista12:
+        diccionario12[elemento[0]]=elemento[1]
+
+    return diccionario12
