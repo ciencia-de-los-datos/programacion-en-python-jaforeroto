@@ -1,6 +1,8 @@
 
 
 datos=[]
+
+
 with open('data.csv','r') as file:
     for line in file:
         line=line.replace(chr(32),"")
