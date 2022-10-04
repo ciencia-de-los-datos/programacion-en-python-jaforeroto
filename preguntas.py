@@ -364,7 +364,7 @@ def pregunta_11():
     letras=[]
     de=[]
     lista11=[]
-    diccionario12={}
+    diccionario11={}
 
     for t in range(0,len(datos)):
         e=list(str((datos[t][3])).split(','))
@@ -400,9 +400,9 @@ def pregunta_11():
         lista11.append(h)
         
     for elemento in lista11:
-        diccionario12[elemento[0]]=elemento[1]
+        diccionario11[elemento[0]]=elemento[1]
 
-    return lista11
+    return diccionario11
 
 
 def pregunta_12():
