@@ -1,6 +1,4 @@
 
-from numpy import append
-
 
 datos=[]
 with open('data.csv','r') as file:
