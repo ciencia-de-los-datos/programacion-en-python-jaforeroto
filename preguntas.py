@@ -1,4 +1,7 @@
 
+from numpy import append
+
+
 datos=[]
 with open('data.csv','r') as file:
     for line in file:
@@ -38,7 +41,6 @@ def pregunta_02():
     ]
 
     """
-
     lista2 = [linea[0] for linea in datos[0:]]
     lista2 = [
         
@@ -206,7 +208,32 @@ def pregunta_07():
 
     """
 
-    return
+    lista=[]
+    indiceice=[]
+    lista7=[]
+    
+    
+    for t in range(0,len(datos)):
+        e1=int(datos[t][1])
+        e2=datos[t][0]
+        indiceice.append(e1)    
+        u=(e1,e2)
+        lista.append(u)
+    
+    indiceice=set(indiceice)
+
+    for j in indiceice:
+        letras = 0
+        letras = []
+        rta = 0 
+        for k in lista:
+            if k[0] == j:
+                letras.append(k[1])
+        rta=(j,letras)        
+        lista7.append(rta)  
+             
+    return lista7  
+
 
 
 def pregunta_08():
@@ -231,7 +258,32 @@ def pregunta_08():
     ]
 
     """
-    return
+
+    lista=[]
+    indice=[]
+    lista8=[]
+    
+    for t in range(0,len(tup_lst)):
+        e1=int(datos[t][1])
+        e2=datos[t][0]
+        indice.append(e1)    
+        u=(e1,e2)
+        lista.append(u)
+    
+    indice=set(indice)
+
+    for j in indice:
+        letras=0
+        letras=[]
+        rta=0 
+        for k in lista:
+            if k[0]==j:
+                letras.append(k[1])
+        letras=sorted(list(set(letras)),reverse=False)
+        rta=(j,letras)        
+        lista8.append(rta)  
+
+    return lista8  
 
 
 def pregunta_09():
@@ -308,6 +360,7 @@ def pregunta_11():
 
 
     """
+
     return
 
 
@@ -326,4 +379,6 @@ def pregunta_12():
     }
 
     """
+
+
     return
